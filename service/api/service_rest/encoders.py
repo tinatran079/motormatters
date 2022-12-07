@@ -37,6 +37,8 @@ class AppointmentListEncoder(ModelEncoder):
     encoders = {
         "vin": AutomobileVODetailEncoder(),
     }
+    def get_extra_data(self, o):
+        return {"technician": o.technician.technician_name}
 
 class AppointmentDetailEncoder(ModelEncoder):
     model = Appointment

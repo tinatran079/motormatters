@@ -13,7 +13,7 @@ function App() {
       <div className="container">
       <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/technician" element={<TechnicianForm />} />
+          <Route path="/technicians" element={<TechnicianForm />} />
           <Route path="/appointments/new" element={<AppointmentForm />} />
           <Route path="/appointments" element={<AppointmentList />} />
           <Route path="/appointments/history" element={<ServiceHistory />} />

@@ -23,12 +23,11 @@ class Technician(models.Model):
         return self.technician_name
 
 class Appointment(models.Model):
-    vin = models.CharField(max_length=17, unique=True)
+    vin = models.CharField(max_length=17, default="")
     customer_name = models.CharField(max_length=200)
-    date = models.DateField(auto_now=False)
-    time = models.TimeField(auto_now=False, blank=True, null=True)
+    date = models.DateTimeField(auto_now=False)
     reason = models.CharField(max_length=200)
-    vip = models.BooleanField(default=False)
+    status = models.BooleanField(default=False)
     technician = models.ForeignKey(
         Technician,
         related_name="appointments",

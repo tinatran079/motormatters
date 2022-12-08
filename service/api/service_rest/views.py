@@ -29,7 +29,7 @@ def api_technicians(request):
         except:
             return JsonResponse(
                 {"message": "Could not create a technician"},
-                status = 400,
+                status = 404,
             )
 
 
@@ -38,11 +38,6 @@ def api_appointments(request):
     # Get list of appointments
     if request.method == "GET":
         appointments = Appointment.objects.all()
-        for appointment in appointments:
-            if appointment.vin in AutomobileVO.objects.values_list("vin", flat=True):
-                appointment.vip = True
-            else:
-                appointment.vip = False
         return JsonResponse(
             {"appointments": appointments},
             encoder=AppointmentEncoder,
@@ -63,7 +58,7 @@ def api_appointments(request):
         except Technician.DoesNotExist:
             return JsonResponse(
                 {"message": "Invalid Technician"},
-                status=400,
+                status=404,
             )
 
 
@@ -71,3 +66,13 @@ def api_appointments(request):
 def api_delete_appointment(request,pk):
     count, _ = Appointment.objects.filter(id=pk).delete()
     return JsonResponse({"deleted": count > 0})
+
+
+@require_http_methods('GET')
+def api_automobile_vo(request):
+    if request.method == "GET":
+        auto = AutomobileVO.objects.all()
+        return JsonResponse(
+            {'auto': auto},
+            encoder=AutomobileVOEncoder
+        )

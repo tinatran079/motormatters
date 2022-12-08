@@ -6,13 +6,13 @@ const AppointmentForm = () => {
     vin: "",
     customer_name: '',
     date: '',
-    time: '',
     technician: [],
     reason: ''
   })
 
   // set state for technicians drop-down
   const [ technicians, setTechnicians ] = useState([])
+
 
   //useEffect() get data for locations drop-down
   useEffect(()=> {
@@ -60,7 +60,6 @@ const AppointmentForm = () => {
         vin: "",
         customer_name: '',
         date: '',
-        time: '',
         technician: '',
         reason: ''
       });
@@ -84,13 +83,8 @@ const AppointmentForm = () => {
             </div>
 
             <div className="form-floating mb-3">
-              <input onChange={handleFormChange} value={formData.date} placeholder="Date" required type="date" name="date" id="date" className="form-control" />
+              <input onChange={handleFormChange} value={formData.date} placeholder="Date" required type="datetime-local" name="date" id="date" className="form-control" />
               <label htmlFor="date">Date</label>
-            </div>
-
-            <div className="form-floating mb-3">
-              <input onChange={handleFormChange} value={formData.time} placeholder="Time" required type="time" name="time" id="time" className="form-control" />
-              <label htmlFor="time">Time</label>
             </div>
 
             <div className="form-floating mb-3">

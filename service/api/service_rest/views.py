@@ -68,3 +68,9 @@ def api_appointments(request):
             encoder=AppointmentEncoder,
             safe=False,
         )
+
+
+@require_http_methods(["DELETE"])
+def api_delete_appointment(request,pk):
+    count, _ = Appointment.objects.filter(id=pk).delete()
+    return JsonResponse({"deleted": count > 0})

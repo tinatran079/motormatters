@@ -14,6 +14,7 @@ def api_technicians(request):
         return JsonResponse(
             {"technicians": technicians},
             encoder=TechnicianEncoder,
+            safe=False
         )
     # Create a technician
     else:
@@ -37,37 +38,33 @@ def api_appointments(request):
     # Get list of appointments
     if request.method == "GET":
         appointments = Appointment.objects.all()
+        for appointment in appointments:
+            if appointment.vin in AutomobileVO.objects.values_list("vin", flat=True):
+                appointment.vip = True
+            else:
+                appointment.vip = False
         return JsonResponse(
             {"appointments": appointments},
             encoder=AppointmentEncoder,
+            safe=False
         )
     else:
         # Create an appointment
         content = json.loads(request.body)
         try:
-            vin = content["vin"]
-            autos = AutomobileVO.objects.get(vin=vin)
-            content["autos"] = autos
-        except AutomobileVO.DoesNotExist:
+            technician = Technician.objects.get(id=content["technician"])
+            content["technician"] = technician
+            appointment = Appointment.objects.create(**content)
             return JsonResponse(
-                {"message": "VIN does not exist"},
-                status=400,
+                {"appointments": appointment},
+                encoder=AppointmentEncoder,
+                safe=False,
             )
-        try:
-            technician = content["technician"]
-            tech = Technician.objects.get(technician_name=technician)
-            content["technician"] = tech
         except Technician.DoesNotExist:
             return JsonResponse(
-                {"message": "Technician does not exist"},
+                {"message": "Invalid Technician"},
                 status=400,
             )
-        appointment = Appointment.objects.create(**content)
-        return JsonResponse(
-            appointment,
-            encoder=AppointmentEncoder,
-            safe=False,
-        )
 
 
 @require_http_methods(["DELETE"])

@@ -3,22 +3,24 @@ import React from 'react'
 
 class SalesPersonForm extends React.Component{
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
+            salesperson: [],
             name: "",
             employee_id: "",
         };
+        this.handleSubmit = this.handleSubmit.bind(this)
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleEmployeeChange = this.handleEmployeeChange.bind(this);
     }
 
     async handleSubmit(event){
-        event.PreventDefault();
+        event.preventDefault();
         const data = {...this.state};
         delete data.salesperson;
         console.log(data);
 
-        const salespersonUrl = 'http://localhost:8090/api/salespersons/';
+        const salespersonUrl = 'http://localhost:8090/api/salepersons/';
         const fetchConfig = {
             method: "post",
             body: JSON.stringify(data),

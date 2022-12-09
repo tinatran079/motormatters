@@ -26,8 +26,13 @@ class Customer(models.Model):
 
 
 class Sale(models.Model):
-    purchaser_name = models.CharField(max_length=200)
     price = models.PositiveBigIntegerField()
+    customer = models.ForeignKey(
+        Customer,
+        related_name="sale",
+        on_delete=models.CASCADE,
+        null=True,
+    )
     sales_person = models.ForeignKey(
         Salesperson,
         related_name="Sale",

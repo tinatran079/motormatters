@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 import json
-from .encoders import SalespersonEncoder, CustomerEncoder, SaleEncoder
+from .encoders import SalespersonEncoder, CustomerEncoder, SaleEncoder, AutomobileVOEncoder
 
 from .models import Customer,Salesperson, Sale, AutomobileVO
 
@@ -147,7 +147,7 @@ def api_sale(request):
     if request.method == "GET":
         sale = Sale.objects.all()
         return JsonResponse(
-            {"Sale": sale},
+            {"sale": sale},
             encoder=SaleEncoder
         )
     else:
@@ -175,3 +175,13 @@ def api_sale(request):
             encoder=SaleEncoder,
             safe=False,
         )
+
+
+@require_http_methods(["GET"])
+def api_automobile(request):
+    automobile = AutomobileVO.objects.all()
+    return JsonResponse(
+        automobile,
+        encoder=AutomobileVOEncoder,
+        safe=False,
+    )

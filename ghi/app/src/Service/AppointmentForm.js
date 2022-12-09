@@ -97,7 +97,7 @@ const AppointmentForm = () => {
                 <option value="">Choose a Technician</option>
                 {technicians.map(technician => {
                   return (
-                    <option key={technician.id} value={technician.id}>{technician.technician_name}</option>
+                    <option key={technician.href} value={technician.id}>{technician.technician_name}</option>
                   )
                 })}
               </select>

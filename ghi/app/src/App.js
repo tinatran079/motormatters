@@ -14,9 +14,11 @@ function App() {
       <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/technicians" element={<TechnicianForm />} />
-          <Route path="/appointments/new" element={<AppointmentForm />} />
-          <Route path="/appointments" element={<AppointmentList />} />
-          <Route path="/appointments/history" element={<ServiceHistory />} />
+          <Route path ="appointments">
+            <Route index element={<AppointmentList />} />
+            <Route path="new" element={<AppointmentForm />} />
+            <Route path="history" element={<ServiceHistory />} />
+          </Route>
         </Routes>
       </div>
     </BrowserRouter>

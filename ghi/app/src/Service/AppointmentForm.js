@@ -6,6 +6,7 @@ const AppointmentForm = () => {
     vin: "",
     customer_name: '',
     date: '',
+    time: '',
     technician: [],
     reason: ''
   })
@@ -60,13 +61,15 @@ const AppointmentForm = () => {
         vin: "",
         customer_name: '',
         date: '',
+        time: '',
         technician: '',
         reason: ''
       });
     }
   }
 
-  return <div className="row">
+  return (
+    <div className="row">
       <div className="offset-3 col-6">
         <div className="shadow p-4 mt-4">
           <h1>Create a new appointment</h1>
@@ -97,8 +100,10 @@ const AppointmentForm = () => {
                 <option value="">Choose a Technician</option>
                 {technicians.map(technician => {
                   return (
-                    <option key={technician.href} value={technician.id}>{technician.technician_name}</option>
-                  )
+                    <option key={technician.employee_number} value={technician.employee_number}>
+                    {technician.technician_name}
+                    </option>
+                  );
                 })}
               </select>
             </div>
@@ -108,6 +113,7 @@ const AppointmentForm = () => {
         </div>
       </div>
     </div>
+  )
 }
 
 export default AppointmentForm;

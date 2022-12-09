@@ -21,7 +21,7 @@ function ServiceHistory() {
 
     return (
         <div>
-        <h1 className="mb-3">Service History</h1>
+        <h3 className="mb-3">Service History</h3>
         <div className="form-outline">
             <input type="search" id = "form1" className="form-control" placeholder="Search by VIN"  onChange={(e)=>setQuery(e.target.value)} aria-label="Search"/>
         </div>

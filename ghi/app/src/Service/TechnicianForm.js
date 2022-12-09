@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function TechnicianForm(props) {
+function TechnicianForm() {
     const [technician_name, setName] = useState('');
     const [employee_number, setEmployeeNumber] = useState('');
 

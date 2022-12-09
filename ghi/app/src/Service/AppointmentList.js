@@ -58,6 +58,8 @@ function AppointmentList() {
 
 
     return (
+      <div>
+      <h3>Current Appointments</h3>
       <table className="table table-striped">
         <thead>
           <tr>
@@ -90,6 +92,7 @@ function AppointmentList() {
           })}
         </tbody>
       </table>
+      </div>
     )
   }
 

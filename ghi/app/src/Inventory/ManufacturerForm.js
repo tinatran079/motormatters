@@ -43,7 +43,7 @@ const ManufacturerForm = () => {
                     <form onSubmit={handleSubmit} id="create-manufacturer-form">
                         <div className="form-floating mb-3">
                             <input onChange={handleFormChange} value={formData.name} name="name" placeholder="Manufacturer name" required type="text" id="name" className="form-control" />
-                            <label htmlFor="name">Presenter name</label>
+                            <label htmlFor="name">Manufacturer name</label>
                         </div>
 
                         <button className="btn btn-primary">Create</button>

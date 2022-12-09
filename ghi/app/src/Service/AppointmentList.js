@@ -4,6 +4,7 @@ function AppointmentList() {
 
   const [appointments, setAppointments] = useState([])
 
+  const [automobileVOs, setAutomobileVOs] = useState([])
 
   const fetchAppointments = async () => {
     const url = 'http://localhost:8080/api/appointments/'
@@ -12,9 +13,7 @@ function AppointmentList() {
     setAppointments(data.appointments)
   }
 
-  // set state for automobile vos
-  const [automobileVOs, setAutomobileVOs] = useState([])
-  //get automobile vos from API
+
   const fetchAutomobileVOs = async () => {
     const url = 'http://localhost:8080/api/automobilesvo/'
     const response = await fetch(url)
@@ -28,7 +27,7 @@ function AppointmentList() {
     fetchAppointments()
   }
 
-  //When click finish, change status to true
+
   const handleFinish = async(id) => {
     const finishUrl = `http://localhost:8080/api/appointments/${id}/`;
     const status = {"status": true}
@@ -42,7 +41,7 @@ function AppointmentList() {
     const response = await fetch(finishUrl, fetchConfig)
   }
 
-    // change row color if vin exists
+
   const conditionalVip = (vin) => {
     if (automobileVOs.find((obj) => obj.vin === vin ))
     {
@@ -73,18 +72,19 @@ function AppointmentList() {
           </tr>
         </thead>
         <tbody>
-          {appointments.map(appointment => {
+          {appointments?.filter((appointment)=> appointment.status !== true)
+          ?.map(appointment => {
             return (
               <tr key={appointment.id} style={conditionalVip(appointment.vin)}>
                 <td>{appointment.customer_name} </td>
-                <td>{new Date(appointment.date).toLocaleTimeString}</td>
+                <td>{new Date(appointment.date).toLocaleString()}</td>
                 <td>{appointment.reason}</td>
                 <td>{appointment.technician.technician_name}</td>
                 <td>{appointment.vin}</td>
                 <td><button onClick={() => handleCancel(appointment.id)}
                   className="btn btn-danger">Cancel</button></td>
                 <td><button onClick={() => handleFinish(appointment.id)}
-                  className="btn btn-success">Finished</button></td>
+                  className="btn btn-success" name="status">Finished</button></td>
 
               </tr>
             );

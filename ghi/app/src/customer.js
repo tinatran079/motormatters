@@ -5,19 +5,20 @@ class CustomerForm extends React.Component {
         super(props)
         this.state = {
             customer: [],
-            name: '',
-            address: '',
-            phone_number: '',
+            name: "",
+            address: "",
+            phone_number: "",
         };
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleAddressChange = this.handleAddressChange.bind(this);
-        this.handlePhonenumChange = this.handlePhonenumChange.bind(this);
+        this.handlePhonenumberChange = this.handlePhonenumberChange.bind(this);
     }
 
     async handleSubmit(event) {
-        event.preventDeafault();
+        event.preventDefault();
         const data = {...this.state};
-        delete data.customers;
+        delete data.customer;
         console.log(data);
 
         const customerUrl = "http://localhost:8090/api/customers/"
@@ -51,9 +52,9 @@ class CustomerForm extends React.Component {
         const value = event.target.value;
         this.setState({address: value});
     }
-    handlePhonenumChange(event) {
+    handlePhonenumberChange(event) {
         const value = event.target.value;
-        this.setState({phonenum: value});
+        this.setState({phone_number: value});
     }
 
     async componentDidMount() {
@@ -68,6 +69,13 @@ class CustomerForm extends React.Component {
         }
     }
     render() {
+        let notSubmittedClass = "not-submitted";
+        let successClass = "alert alert-success d-none mb-0";
+
+        if (this.state.success === true) {
+            notSubmittedClass = "not-submitted d-none";
+            successClass = "alert alert-success mb-0";
+        }
         return (
             <div className="row">
                 <div className="offset-3 col-6">
@@ -83,13 +91,16 @@ class CustomerForm extends React.Component {
                                 <label htmlFor="address">Address</label>
                             </div>
                             <div className="form-floating mb-3">
-                                <input value={this.state.phonenum} onChange={this.handlePhonenumChange} placeholder="Phone Number" required type="phone number" name="phonenum" id="phonenum" className="form-control"/>
-                                <label htmlFor="phonenum">Phone Number</label>
+                                <input value={this.state.phone_number} onChange={this.handlePhonenumberChange} placeholder="Phone_Number" required type="phone_number" name="phone_number" id="phone_number" className="form-control"/>
+                                <label htmlFor="phone_number">Phone Number</label>
                             </div>
                             <button className="btn btn-primary">Add!</button>
                         </form>
+                        <div className={successClass} id="success-message">
+                        Successfully added!
                     </div>
                 </div>
+            </div>
             </div>
         )
     }

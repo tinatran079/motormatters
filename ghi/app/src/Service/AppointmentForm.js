@@ -3,10 +3,9 @@ import {useEffect, useState} from 'react';
 const AppointmentForm = () => {
     //set state for form fields
   const [ formData, setFormData ] = useState({
-    vin: "",
+    vin: '',
     customer_name: '',
     date: '',
-    time: '',
     technician: [],
     reason: ''
   })
@@ -58,10 +57,9 @@ const AppointmentForm = () => {
       console.log(newAppointment);
       // after submit, clear form
       setFormData({
-        vin: "",
+        vin: '',
         customer_name: '',
         date: '',
-        time: '',
         technician: '',
         reason: ''
       });
@@ -100,7 +98,7 @@ const AppointmentForm = () => {
                 <option value="">Choose a Technician</option>
                 {technicians.map(technician => {
                   return (
-                    <option key={technician.employee_number} value={technician.employee_number}>
+                    <option key={technician.id} value={technician.id}>
                     {technician.technician_name}
                     </option>
                   );

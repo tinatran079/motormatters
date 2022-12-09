@@ -46,7 +46,7 @@ const ManufacturerForm = () => {
                             <label htmlFor="name">Manufacturer name</label>
                         </div>
 
-                        <button className="btn btn-primary">Create</button>
+                        <button className="btn btn-dark">Create</button>
                     </form>
                 </div>
             </div>

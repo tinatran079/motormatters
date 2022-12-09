@@ -24,7 +24,6 @@ function AppointmentList() {
   const handleCancel = async (id) => {
     const deleteUrl = `http://localhost:8080/api/appointments/${id}/`;
     const response = await fetch(deleteUrl, {method: 'DELETE'});
-    fetchAppointments()
   }
 
 
@@ -63,7 +62,7 @@ function AppointmentList() {
         <thead>
           <tr>
             <th>Customer Name</th>
-            <th>Date</th>
+            <th>Date & Time</th>
             <th>Reason</th>
             <th>Technician</th>
             <th>VIN</th>

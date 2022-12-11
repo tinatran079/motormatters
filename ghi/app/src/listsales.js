@@ -1,31 +1,57 @@
 import React from "react";
 
-function SalesList(props) {
+class SalesList extends React.Component {
+  state = {
+    sale: [],
+  };
+
+  async componentDidMount() {
+    const url = "http://localhost:8090/api/sales/";
+    const response = await fetch(url);
+    if (response.ok) {
+      const data = await response.json();
+      this.setState({
+        sale: data.sale?.map((sales) => ({
+            price: sales.price,
+            vin: sales.vin.vin,
+            customer: sales.customer.name,
+            sales_associate: sales.sales_person.name,
+            employee_id: sales.sales_person.employee_id,
+        })) });
+    }
+  }
+
+  render() {
     return (
+      <div>
+        <h1>List Of Sales</h1>
         <table className="table table-striped">
-            <thead>
-                <tr>
-                    <th>Sales Associate</th>
-                    <th>Employee ID</th>
-                    <th>Customer</th>
-                    <th>VIN</th>
-                    <th>Price of Sale</th>
+          <thead>
+            <tr>
+              <th>Sales Associate</th>
+              <th>Employee ID</th>
+              <th>Purchaser</th>
+              <th>VIN</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.sale.map((sales) => {
+              return (
+                <tr key={sales.href}>
+                  <td>{sales.sales_associate}</td>
+                  <td>{sales.employee_id}</td>
+                  <td>{sales.customer}</td>
+                  <td>{sales.vin}</td>
+                  <td>{sales.price}</td>
                 </tr>
-            </thead>
-            <tbody>
-                {props.sales?.map(sale => {
-                    return (
-                        <tr key={sale.id}>
-                            <td>{sale.sales_person}</td>
-                            <td>{sale.customer}</td>
-                            <td>{sale.vin}</td>
-                            <td>{sale.price}</td>
-                        </tr>
-                    )
-                })}
-            </tbody>
+              );
+            })}
+          </tbody>
         </table>
-    )
+      </div>
+    );
+  }
 }
 
 export default SalesList;

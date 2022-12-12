@@ -3,7 +3,7 @@ from django.views.decorators.http import require_http_methods
 import json
 from .encoders import SalespersonEncoder, CustomerEncoder, SaleEncoder, AutomobileVOEncoder
 
-from .models import Customer,Salesperson, Sale, AutomobileVO
+from .models import Customer, Salesperson, Sale, AutomobileVO
 
 @require_http_methods(["GET", "POST"])
 def api_customers(request):
@@ -146,28 +146,43 @@ def api_sale_person(request, pk):
 def api_sale(request):
     if request.method == "GET":
         sale = Sale.objects.all()
+
         return JsonResponse(
             {"sale": sale},
-            encoder=SaleEncoder
+            encoder=SaleEncoder,
         )
+
     else:
         content = json.loads(request.body)
         try:
             vin = content["vin"]
-            autos = AutomobileVO.objects.get(vin=vin)
-            content["autos"] = autos
+            vin = AutomobileVO.objects.get(vin=vin)
+            content["vin"] = vin
+
         except AutomobileVO.DoesNotExist:
             return JsonResponse(
                 {"message": "Vin Does not exist"},
                 status=400,
             )
         try:
-            salesperson = content["salesperson"]
-            sales_assoicate = Salesperson.objects.get(name=salesperson)
-            content["salesperson"] = sales_assoicate
+            customer = content["customer"]
+            customer = Customer.objects.filter(name=customer).first()
+            content["customer"] = customer
+
+        except Customer.DoesNotExist:
+            return JsonResponse(
+                {"message": "customer does not exist"},
+                status=400,
+            )
+        try:
+            sales_person = content["sales_person"]
+            sales_person = Salesperson.objects.get(name=sales_person)
+            content["sales_person"] = sales_person
+
         except Salesperson.DoesNotExist:
-            return JsonResponse({"message": "Sales Associate does not exist"},
-            status=400,
+            return JsonResponse(
+                {"message": "Does not exist"},
+                status=400
             )
         sale = Sale.objects.create(**content)
         return JsonResponse(

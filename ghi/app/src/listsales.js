@@ -1,10 +1,9 @@
-import React from "react";
 
+import React from "react";
 class SalesList extends React.Component {
   state = {
     sale: [],
   };
-
   async componentDidMount() {
     const url = "http://localhost:8090/api/sales/";
     const response = await fetch(url);
@@ -20,7 +19,6 @@ class SalesList extends React.Component {
         })) });
     }
   }
-
   render() {
     return (
       <div>
@@ -53,5 +51,4 @@ class SalesList extends React.Component {
     );
   }
 }
-
 export default SalesList;

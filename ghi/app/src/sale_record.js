@@ -38,7 +38,7 @@ class SaleRecordForm extends React.Component{
                 vin: automobile.vin
               })),
               salespersons: data2.salespersons,
-              customers: data3.customers?.map((customer) => ({
+              customers: data3.cus?.map((customer) => ({
                 name: customer.name,
               }))
             });
@@ -134,7 +134,7 @@ class SaleRecordForm extends React.Component{
                                         {this.state.customers?.map(customer =>{
                                             return (
                                                 <option key={customer.href} value={customer.href}>
-                                                    {customer.customerName}
+                                                    {customer.name}
                                                 </option>
                                             )
                                         })}
@@ -155,3 +155,4 @@ class SaleRecordForm extends React.Component{
 }
 
 export default SaleRecordForm;
+

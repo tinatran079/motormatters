@@ -26,7 +26,7 @@ class SaleEncoder(ModelEncoder):
         "price",
         "customer",
         "sales_person",
-        "vin"
+        "vin",
     ]
     encoders = {
         "sales_person": SalespersonEncoder(),

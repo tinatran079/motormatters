@@ -22,6 +22,7 @@ class Technician(models.Model):
     def __str__(self):
         return self.technician_name
 
+
 class Appointment(models.Model):
     vin = models.CharField(max_length=17, default="")
     customer_name = models.CharField(max_length=200)

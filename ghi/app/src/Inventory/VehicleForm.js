@@ -1,52 +1,52 @@
 import React, { useState, useEffect } from 'react';
 
-function VehicleForm(){
+function VehicleForm() {
 
-    const initialData = {
-        name: "",
-        picture_url: "",
-        manufacturer_id: "",
+  const initialData = {
+    name: "",
+    picture_url: "",
+    manufacturer_id: "",
+  }
+
+  const [modelData, setModelData] = useState(initialData);
+  const [manufacturers, setManufacturers] = useState([]);
+
+  const getManufacturers = async () => {
+    const manufacturerUrl = 'http://localhost:8100/api/manufacturers/';
+    const response = await fetch(manufacturerUrl);
+    if (response.ok) {
+      const manufacturerData = await response.json();
+      setManufacturers(manufacturerData.manufacturers);
+    }
+  }
+
+  useEffect(() => {
+    getManufacturers();
+  }, [])
+
+  const handleFormChange = (e) => {
+    setModelData({
+      ...modelData,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const modelUrl = 'http://localhost:8100/api/models/';
+    const fetchConfig = {
+      method: "POST",
+      body: JSON.stringify({ ...modelData }),
+      headers: { "Content-Type": "application/json" },
+    }
+    const response = await fetch(modelUrl, fetchConfig);
+    if (response.ok) {
+      const newModel = await response.json()
+      setModelData(initialData);
     }
 
-    const [modelData, setModelData] = useState(initialData);
-    const [manufacturers, setManufacturers] = useState([]);
-
-    const getManufacturers = async () => {
-        const manufacturerUrl = 'http://localhost:8100/api/manufacturers/';
-        const response = await fetch(manufacturerUrl);
-        if (response.ok){
-            const manufacturerData = await response.json();
-            setManufacturers(manufacturerData.manufacturers);
-        }
-    }
-
-    useEffect(() => {
-        getManufacturers();
-    }, [])
-
-    const handleFormChange = (e) => {
-        setModelData({
-            ...modelData,
-            [e.target.name]: e.target.value
-        })
-    }
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        const modelUrl = 'http://localhost:8100/api/models/';
-        const fetchConfig = {
-            method: "POST",
-            body: JSON.stringify({...modelData}),
-            headers: {"Content-Type": "application/json"},
-        }
-        const response = await fetch(modelUrl, fetchConfig);
-        if (response.ok){
-            const newModel = await response.json()
-            setModelData(initialData);
-        }
-
-    }
-    return(
+  }
+  return (
     <div className="row">
       <div className="offset-3 col-6">
         <div className="shadow p-4 mt-4">
@@ -69,7 +69,7 @@ function VehicleForm(){
                 {manufacturers.map(manufacturer => {
                   return (
                     <option key={manufacturer.id} value={manufacturer.id}>
-                    {manufacturer.name}
+                      {manufacturer.name}
                     </option>
                   );
                 })}
@@ -81,7 +81,7 @@ function VehicleForm(){
         </div>
       </div>
     </div>
-    )
+  )
 }
 
 

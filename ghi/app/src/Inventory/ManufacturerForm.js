@@ -5,7 +5,6 @@ const ManufacturerForm = () => {
         name: '',
     })
 
-
     const handleFormChange = (e) => {
         setFormData({
             ...formData,

@@ -17,26 +17,26 @@ function App() {
     <BrowserRouter>
       <Nav />
       <div className="container">
-      <Routes>
+        <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/technicians" element={<TechnicianForm />} />
           <Route path="automobiles">
             <Route index element={<AutomobileList />} />
             <Route path="new" element={<AutomobileForm />} />
-            </Route>
+          </Route>
           <Route path="vehicles">
-            <Route index element ={<VehicleList />} />
+            <Route index element={<VehicleList />} />
             <Route path="new" element={<VehicleForm />} />
           </Route>
-          <Route path ="manufacturers">
+          <Route path="manufacturers">
             <Route index element={<ManufacturerList />} />
             <Route path="new" element={<ManufacturerForm />} />
           </Route>
-          <Route path ="appointments">
+          <Route path="appointments">
             <Route index element={<AppointmentList />} />
             <Route path="new" element={<AppointmentForm />} />
             <Route path="history" element={<ServiceHistory />} />
-            </Route>
+          </Route>
         </Routes>
       </div>
     </BrowserRouter>

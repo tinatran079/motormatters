@@ -1,8 +1,7 @@
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 
 const AppointmentForm = () => {
-    //set state for form fields
-  const [ formData, setFormData ] = useState({
+  const [formData, setFormData] = useState({
     vin: '',
     customer_name: '',
     date: '',
@@ -10,12 +9,9 @@ const AppointmentForm = () => {
     reason: ''
   })
 
-  // set state for technicians drop-down
-  const [ technicians, setTechnicians ] = useState([])
+  const [technicians, setTechnicians] = useState([])
 
-
-  //useEffect() get data for locations drop-down
-  useEffect(()=> {
+  useEffect(() => {
     const loadData = async () => {
       const url = 'http://localhost:8080/api/technicians/';
       const response = await fetch(url);
@@ -38,7 +34,7 @@ const AppointmentForm = () => {
     })
   }
 
-  // after clicking 'submit', send data to API
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -55,7 +51,6 @@ const AppointmentForm = () => {
     if (response.ok) {
       const newAppointment = await response.json();
       console.log(newAppointment);
-      // after submit, clear form
       setFormData({
         vin: '',
         customer_name: '',
@@ -99,7 +94,7 @@ const AppointmentForm = () => {
                 {technicians.map(technician => {
                   return (
                     <option key={technician.id} value={technician.id}>
-                    {technician.technician_name}
+                      {technician.technician_name}
                     </option>
                   );
                 })}

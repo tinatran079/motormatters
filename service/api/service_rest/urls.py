@@ -1,5 +1,11 @@
 from django.urls import path
-from .views import api_appointments, api_technicians, api_show_appointment, api_automobile_vo, api_show_technicians
+from .views import (
+    api_appointments,
+    api_technicians,
+    api_show_appointment,
+    api_automobile_vo,
+    api_show_technicians,
+)
 
 
 urlpatterns = [

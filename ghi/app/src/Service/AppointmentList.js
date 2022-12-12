@@ -7,7 +7,7 @@ function AppointmentList() {
   const [automobileVOs, setAutomobileVOs] = useState([])
 
   const fetchAppointments = async () => {
-    const url = 'http://localhost:8080/api/appointments/'
+    const url = 'http://localhost:8080/api/appointments/';
     const response = await fetch(url)
     const data = await response.json()
     setAppointments(data.appointments)
@@ -15,7 +15,7 @@ function AppointmentList() {
 
 
   const fetchAutomobileVOs = async () => {
-    const url = 'http://localhost:8080/api/automobilesvo/'
+    const url = 'http://localhost:8080/api/automobilesvo/';
     const response = await fetch(url)
     const automobiles = await response.json()
     setAutomobileVOs(automobiles.auto)
@@ -23,13 +23,13 @@ function AppointmentList() {
 
   const handleCancel = async (id) => {
     const deleteUrl = `http://localhost:8080/api/appointments/${id}/`;
-    const response = await fetch(deleteUrl, {method: 'DELETE'});
+    const response = await fetch(deleteUrl, { method: 'DELETE' });
   }
 
 
-  const handleFinish = async(id) => {
+  const handleFinish = async (id) => {
     const finishUrl = `http://localhost:8080/api/appointments/${id}/`;
-    const status = {"status": true}
+    const status = { "status": true }
     const fetchConfig = {
       method: "PUT",
       body: JSON.stringify(status),
@@ -42,11 +42,10 @@ function AppointmentList() {
 
 
   const conditionalVip = (vin) => {
-    if (automobileVOs.find((obj) => obj.vin === vin ))
-    {
-        return {
-            backgroundColor: "#CCCCFF",
-        }
+    if (automobileVOs.find((obj) => obj.vin === vin)) {
+      return {
+        backgroundColor: "#CCCCFF",
+      }
     }
   }
 
@@ -57,8 +56,8 @@ function AppointmentList() {
   }, []);
 
 
-    return (
-      <div>
+  return (
+    <div>
       <h3>Current Appointments</h3>
       <table className="table table-striped">
         <thead>
@@ -73,27 +72,27 @@ function AppointmentList() {
           </tr>
         </thead>
         <tbody>
-          {appointments?.filter((appointment)=> appointment.status !== true)
-          ?.map(appointment => {
-            return (
-              <tr key={appointment.id} style={conditionalVip(appointment.vin)}>
-                <td>{appointment.customer_name} </td>
-                <td>{new Date(appointment.date).toLocaleString()}</td>
-                <td>{appointment.reason}</td>
-                <td>{appointment.technician.technician_name}</td>
-                <td>{appointment.vin}</td>
-                <td><button onClick={() => handleCancel(appointment.id)}
-                  className="btn btn-danger">Cancel</button></td>
-                <td><button onClick={() => handleFinish(appointment.id)}
-                  className="btn btn-success" name="status">Finished</button></td>
+          {appointments?.filter((appointment) => appointment.status !== true)
+            ?.map(appointment => {
+              return (
+                <tr key={appointment.id} style={conditionalVip(appointment.vin)}>
+                  <td>{appointment.customer_name} </td>
+                  <td>{new Date(appointment.date).toUTCString()}</td>
+                  <td>{appointment.reason}</td>
+                  <td>{appointment.technician.technician_name}</td>
+                  <td>{appointment.vin}</td>
+                  <td><button onClick={() => handleCancel(appointment.id)}
+                    className="btn btn-danger">Cancel</button></td>
+                  <td><button onClick={() => handleFinish(appointment.id)}
+                    className="btn btn-success" name="status">Finished</button></td>
 
-              </tr>
-            );
-          })}
+                </tr>
+              );
+            })}
         </tbody>
       </table>
-      </div>
-    )
-  }
+    </div>
+  )
+}
 
 export default AppointmentList;

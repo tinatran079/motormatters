@@ -11,7 +11,9 @@ def api_technicians(request):
     if request.method == "GET":
         technicians = Technician.objects.all()
         return JsonResponse(
-            {"technicians": technicians}, encoder=TechnicianEncoder, safe=False
+            {"technicians": technicians},
+            encoder=TechnicianEncoder,
+            safe=False,
         )
     else:
         try:
@@ -33,7 +35,11 @@ def api_technicians(request):
 def api_show_technicians(request, pk):
     if request.method == "GET":
         technician = Technician.objects.get(id=pk)
-        return JsonResponse(technician, encoder=TechnicianEncoder, safe=False)
+        return JsonResponse(
+            technician,
+            encoder=TechnicianEncoder,
+            safe=False,
+        )
     elif request.method == "DELETE":
         count, _ = Technician.objects.filter(id=pk).delete()
         return JsonResponse({"deleted": count > 0})
@@ -47,7 +53,11 @@ def api_show_technicians(request, pk):
             )
         Technician.objects.filter(id=pk).update(**content)
         technician = Technician.objects.get(id=pk)
-        return JsonResponse(technician, encoder=TechnicianEncoder, safe=False)
+        return JsonResponse(
+            technician,
+            encoder=TechnicianEncoder,
+            safe=False,
+        )
 
 
 @require_http_methods(["GET", "POST"])
@@ -55,7 +65,9 @@ def api_appointments(request):
     if request.method == "GET":
         appointments = Appointment.objects.all()
         return JsonResponse(
-            {"appointments": appointments}, encoder=AppointmentEncoder, safe=False
+            {"appointments": appointments},
+            encoder=AppointmentEncoder,
+            safe=False,
         )
     else:
         content = json.loads(request.body)
@@ -102,4 +114,8 @@ def api_show_appointment(request, pk):
 def api_automobile_vo(request):
     if request.method == "GET":
         auto = AutomobileVO.objects.all()
-        return JsonResponse({"auto": auto}, encoder=AutomobileVOEncoder)
+        return JsonResponse(
+            {"auto": auto},
+            encoder=AutomobileVOEncoder,
+            safe=False,
+        )

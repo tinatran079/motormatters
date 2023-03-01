@@ -50,7 +50,6 @@ const AppointmentForm = () => {
     const response = await fetch(appointmentUrl, fetchConfig);
     if (response.ok) {
       const newAppointment = await response.json();
-      console.log(newAppointment);
       setFormData({
         vin: '',
         customer_name: '',
@@ -58,6 +57,9 @@ const AppointmentForm = () => {
         technician: '',
         reason: ''
       });
+      alert("Appointment successfully created!")
+    } else {
+      alert("Could not create an appointment!");
     }
   }
 

@@ -29,7 +29,7 @@ function AppointmentList() {
 
   const handleFinish = async (id) => {
     const finishUrl = `http://localhost:8080/api/appointments/${id}/`;
-    const status = { "status": true }
+    const status = { "status": "Finished" }
     const fetchConfig = {
       method: "PUT",
       body: JSON.stringify(status),

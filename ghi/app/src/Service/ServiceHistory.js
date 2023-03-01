@@ -37,6 +37,7 @@ function ServiceHistory() {
             <th>Reason</th>
             <th>Technician</th>
             <th>VIN</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
@@ -50,6 +51,7 @@ function ServiceHistory() {
                 <td>{appointment.reason}</td>
                 <td>{appointment.technician.technician_name}</td>
                 <td>{appointment.vin}</td>
+                <td>{appointment.status}</td>
               </tr>
             )
           })}

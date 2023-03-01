@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Noto Sans', sans-serif;
+  }
+
+.main-page-container, .tech-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.main-page-background, .people-page-background, .sale-page-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.main-page-image, .people-page-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.main-page-content {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.main-page-title {
+    font-weight: 900 !important; /* Applies "Bold" weight */
+}
+
+.main-page-subtitle {
+    font-weight: 600 !important; /* Applies "Medium" weight */
+}
+
+.main-page-cta {
+    font-weight: 800;
+    opacity: 0.8;
+    background-color: rgba(244, 244, 244, 0.65);
+    color: black;
+    width: 300px;
+}
+
+.main-page-buttons-container {
+    position: relative;
+    height: 100px; /* set height to give room for the buttons */
+}
+
+.main-page-buttons {
+    position: absolute;
+    bottom: 0;
+    left: 50%; /* center the buttons horizontally */
+    transform: translateX(-50%);
+    margin-bottom: 120px; /* add some space between the buttons and the content above */
+}
+
+.main-page-buttons button {
+    margin-right: 20px;
+}
+
+.main-page-button {
+    background-color: rgba(23, 26, 32, 0.8);
+    color: white;
+    width: 300px;
+}
+
+.navbar {
+    background-color: transparent;
+    backdrop-filter: blur(10px); /* optional, adds a blurry effect */
+    padding: 20px 0;
+}
+
+.navbar-brand {
+    color: #000;
+    font-size: 30px;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.navbar-nav {
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.nav-link {
+    color: #000;
+    font-size: 16px;
+    font-weight: 800;
+    padding: 15px;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #0c2d74;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 0.5rem;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.dropdown-menu {
+    background-color: #fff;
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
+    padding: 0;
+    left: 0;
+    right: unset;
+    overflow: auto;
+    max-height: 200px;
+    position: static;
+}
+
+.dropdown-item {
+    color: #000;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 15px 30px;
+    transition: all 0.3s ease;
+}
+
+.dropdown-item:hover {
+    background-color: #f2f2f2;
+    color: #0c2d74;
+}
+
+.dropdown-item.active {
+    background-color: #f2f2f2;
+    color: #0c2d74;
+}
+
+@media screen and (max-width: 992px) {
+    .navbar-collapse {
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+    }
+
+    .navbar-nav {
+        display: flex;
+        flex-direction: column;
+        margin-left: 0;
+        text-align: center;
+}
+
+    .nav-link {
+        border-bottom: 1px solid #ccc;
+        color: #000;
+        font-size: 16px;
+        font-weight: 500;
+        padding: 15px;
+        text-transform: uppercase;
+        transition: all 0.3s ease;
+        width: 100%;
+    }
+
+    .dropdown-menu {
+        margin-top: 0;
+        padding: 20px;
+    }
+
+    .dropdown-item {
+        padding: 10px 0;
+        text-align: center;
+    }
+}
+
+.navbar-nav .nav-link {
+    margin-right: 30px;
+  }
+
+  .table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: white;
+  }
+
+  .table th,
+  .table td {
+    border: 1px solid #ccc;
+    padding: 12px;
+    text-align: left;
+  }
+
+  .table th {
+    background-color: white;
+  }
+
+  .table tbody tr:nth-child(even) {
+    background-color: #fff8f8;
+  }
+
+  .table tbody tr:hover {
+    background-color: #ddd;
+  }
+
+  .form-select {
+    margin-right: 16px;
+    margin-bottom: 16px;
+  }
+
+  .btn-primary {
+    background-color: #1c2738;
+    border-color: #1c2738;
+    margin-bottom: 10px;
+  }
+
+  .btn-primary:hover {
+    background-color: #0e141f;
+    border-color: #0e141f;
+  }
+
+  .form-outline {
+    margin-bottom: 10px;
+  }
+
+  .card {
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    margin-bottom: 30px;
+  }
+
+  .card-img-top {
+    border-radius: 5px 5px 0 0;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .card-body {
+    padding: 20px;
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .card-text {
+    margin-bottom: 20px;
+  }

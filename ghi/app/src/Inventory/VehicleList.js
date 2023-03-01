@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-
 function VehicleList() {
 
     const [vehicles, setVehicles] = useState([])
@@ -19,28 +18,28 @@ function VehicleList() {
     }, []);
 
     return (
-        <div>
-            <h2>List of Vehicle Models</h2>
-            <table className="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Manufacturer</th>
-                        <th>Picture</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {vehicles?.map(model => {
-                        return (
-                            <tr key={model.id}>
-                                <td>{model.name}</td>
-                                <td>{model.manufacturer.name}</td>
-                                <td><img src={model.picture_url} className="rounded float-left" width="200" height="100" alt="img"></img></td>
-                            </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
+    <div className="service-form-container">
+    <div className="people-page-background">
+        <img
+            className="people-page-image"
+            src="https://wallpaperaccess.com/full/878797.jpg"
+            alt="sale image"
+            />
+    </div>
+            <h2>Vehicle Models</h2>
+            <div className="row">
+      {vehicles?.map(model => (
+        <div className="col-md-4" key={model.id}>
+          <div className="card">
+            <img className="card-img-top" src={model.picture_url} alt="vehicle model" />
+            <div className="card-body">
+              <h5 className="card-title">{model.name}</h5>
+              <p className="card-text">Manufacturer: {model.manufacturer.name}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
         </div>
     )
 

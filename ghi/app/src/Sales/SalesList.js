@@ -43,8 +43,14 @@ function SalesList() {
 
 
   return (
-    <div>
-            <br/>
+    <div className="sale-form-container">
+      <div className="sale-page-background">
+          <img
+              className="people-page-image"
+              src="https://wallpapercave.com/wp/wp4004363.jpg"
+              alt="sale image"
+              />
+      </div>
             <h1>Sales History</h1>
             <div className="mb-3">
                 <select onChange={handleChange} required id="sales_person" name="sales_person" className="form-select">
@@ -57,9 +63,7 @@ function SalesList() {
                     )
                   })}
                 </select>
-                <p></p>
                 <button onClick={getSales} className="btn btn-primary">See all</button>
-            <br/>
             <br/>
             <table className="table table-striped">
                 <thead>

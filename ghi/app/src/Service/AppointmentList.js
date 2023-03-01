@@ -44,7 +44,7 @@ function AppointmentList() {
   const conditionalVip = (vin) => {
     if (automobileVOs.find((obj) => obj.vin === vin)) {
       return {
-        backgroundColor: "#CCCCFF",
+        backgroundColor: "#ADD8E6",
       }
     }
   }
@@ -57,8 +57,15 @@ function AppointmentList() {
 
 
   return (
-    <div>
-      <h3>Current Appointments</h3>
+    <div className="service-form-container">
+    <div className="people-page-background">
+        <img
+            className="people-page-image"
+            src="https://wallpapercave.com/wp/wp2267386.jpg"
+            alt="sale image"
+            />
+    </div>
+      <h3>Upcoming Appointments</h3>
       <table className="table table-striped">
         <thead>
           <tr>
@@ -68,7 +75,7 @@ function AppointmentList() {
             <th>Technician</th>
             <th>VIN</th>
             <th>Cancel</th>
-            <th>Status</th>
+            <th>Finished?</th>
           </tr>
         </thead>
         <tbody>

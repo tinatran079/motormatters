@@ -35,7 +35,14 @@ function CustomerForm() {
 
 
     return (
-        <div className="row">
+      <div className="tech-form-container">
+      <div className="people-page-background">
+          <img
+              className="people-page-image"
+              src="https://tesla-cdn.thron.com/delivery/public/image/tesla/45992f1c-a33a-4a04-b1f0-338aff182f8e/bvlatuR/std/2880x1800/_25-Hero-D"
+              alt="tech image"
+              />
+      </div>
         <div className="offset-3 col-6">
           <div className="shadow p-4 mt-4">
             <h1>Register a Customer</h1>

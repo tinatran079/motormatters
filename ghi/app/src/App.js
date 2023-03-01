@@ -15,6 +15,7 @@ import CustomerForm from './Sales/CustomerForm';
 import SaleForm from './Sales/SaleForm';
 import SalesList from './Sales/SalesList';
 import SalesPersonForm from './Sales/SalesPersonForm';
+import './App.css';
 
 function App() {
   return (

@@ -24,7 +24,14 @@ function ServiceHistory() {
   }, []);
 
   return (
-    <div>
+    <div className="service-form-container">
+      <div className="people-page-background">
+          <img
+              className="people-page-image"
+              src="https://wallpapercave.com/wp/wp2267386.jpg"
+              alt="sale image"
+              />
+      </div>
       <h3 className="mb-3">Service History</h3>
       <div className="form-outline">
         <input type="search" id="form1" className="form-control" placeholder="Search by VIN" onChange={handleFilterChange} aria-label="Search" />

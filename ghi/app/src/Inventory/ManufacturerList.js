@@ -19,7 +19,14 @@ function ManufacturerList() {
     }, []);
 
     return (
-        <div>
+    <div className="service-form-container">
+      <div className="people-page-background">
+          <img
+              className="people-page-image"
+              src="https://wallpaperaccess.com/full/878797.jpg"
+              alt="sale image"
+              />
+      </div>
             <h2>List of Manufacturers</h2>
             <table className="table table-striped">
                 <thead>

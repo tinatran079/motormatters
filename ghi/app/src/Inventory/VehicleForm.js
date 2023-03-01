@@ -43,11 +43,19 @@ function VehicleForm() {
     if (response.ok) {
       const newModel = await response.json()
       setModelData(initialData);
+      alert('Model created successfully!');
     }
 
   }
   return (
-    <div className="row">
+    <div className="service-form-container">
+    <div className="people-page-background">
+        <img
+            className="people-page-image"
+            src="https://wallpaperaccess.com/full/878797.jpg"
+            alt="sale image"
+            />
+    </div>
       <div className="offset-3 col-6">
         <div className="shadow p-4 mt-4">
           <h1>Create a new vehicle model</h1>

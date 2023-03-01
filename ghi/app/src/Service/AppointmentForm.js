@@ -64,7 +64,14 @@ const AppointmentForm = () => {
   }
 
   return (
-    <div className="row">
+    <div className="service-form-container">
+    <div className="people-page-background">
+        <img
+            className="people-page-image"
+            src="https://wallpapercave.com/wp/wp2267386.jpg"
+            alt="sale image"
+            />
+    </div>
       <div className="offset-3 col-6">
         <div className="shadow p-4 mt-4">
           <h1>Create a new appointment</h1>

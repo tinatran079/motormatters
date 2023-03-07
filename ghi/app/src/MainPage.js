@@ -1,5 +1,5 @@
-import { NavLink } from 'react-router-dom';
-import Nav from './Nav';
+import { NavLink } from "react-router-dom";
+import Nav from "./Nav";
 function MainPage() {
   return (
     <div className="main-page-container">
@@ -17,16 +17,16 @@ function MainPage() {
         </p>
       </div>
       <div className="main-page-buttons">
-      <NavLink to ="/automobiles">
-        <button className="main-page-cta btn btn-lg btn-outline-light">
-          Check our Inventory
-        </button>
-      </NavLink>
-      <NavLink to = "/appointments">
-        <button className="main-page-button btn btn-lg btn-outline-dark">
-          Upcoming Appointments
-        </button>
-      </NavLink>
+        <NavLink to="/automobiles">
+          <button className="main-page-cta btn btn-lg btn-outline-light">
+            Check our Inventory
+          </button>
+        </NavLink>
+        <NavLink to="/appointments">
+          <button className="main-page-button btn btn-lg btn-outline-dark">
+            Upcoming Appointments
+          </button>
+        </NavLink>
       </div>
     </div>
   );

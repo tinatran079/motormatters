@@ -1,40 +1,46 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 function ServiceHistory() {
-
   const [appointments, setAppointments] = useState([]);
 
   const fetchAppointments = async () => {
-    const url = 'http://localhost:8080/api/appointments/';
+    const url = "http://localhost:8080/api/appointments/";
     const response = await fetch(url);
     if (response.ok) {
       const data = await response.json();
-      setAppointments(data.appointments)
+      setAppointments(data.appointments);
     }
-  }
+  };
 
-  const [filter, setFilter] = useState('')
+  const [filter, setFilter] = useState("");
 
   const handleFilterChange = (e) => {
     setFilter(e.target.value);
-  }
+  };
 
   useEffect(() => {
-    fetchAppointments()
+    fetchAppointments();
   }, []);
 
   return (
     <div className="service-form-container">
       <div className="people-page-background">
-          <img
-              className="people-page-image"
-              src="https://wallpapercave.com/wp/wp2267386.jpg"
-              alt="sale image"
-              />
+        <img
+          className="people-page-image"
+          src="https://wallpapercave.com/wp/wp2267386.jpg"
+          alt="sale image"
+        />
       </div>
       <h3 className="mb-3">Service History</h3>
       <div className="form-outline">
-        <input type="search" id="form1" className="form-control" placeholder="Search by VIN" onChange={handleFilterChange} aria-label="Search" />
+        <input
+          type="search"
+          id="form1"
+          className="form-control"
+          placeholder="Search by VIN"
+          onChange={handleFilterChange}
+          aria-label="Search"
+        />
       </div>
       <table className="table table-striped">
         <thead>
@@ -48,24 +54,24 @@ function ServiceHistory() {
           </tr>
         </thead>
         <tbody>
-          {appointments?.filter((appointment) =>
-            appointment.vin.includes(filter)
-          ).map(appointment => {
-            return (
-              <tr key={appointment.id} >
-                <td>{appointment.customer_name} </td>
-                <td>{new Date(appointment.date).toUTCString()}</td>
-                <td>{appointment.reason}</td>
-                <td>{appointment.technician.technician_name}</td>
-                <td>{appointment.vin}</td>
-                <td>{appointment.status}</td>
-              </tr>
-            )
-          })}
+          {appointments
+            ?.filter((appointment) => appointment.vin.includes(filter))
+            .map((appointment) => {
+              return (
+                <tr key={appointment.id}>
+                  <td>{appointment.customer_name} </td>
+                  <td>{new Date(appointment.date).toUTCString()}</td>
+                  <td>{appointment.reason}</td>
+                  <td>{appointment.technician.technician_name}</td>
+                  <td>{appointment.vin}</td>
+                  <td>{appointment.status}</td>
+                </tr>
+              );
+            })}
         </tbody>
       </table>
     </div>
-  )
+  );
 }
 
-export default ServiceHistory
+export default ServiceHistory;
